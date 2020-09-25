@@ -73,9 +73,22 @@ def plus_sign(regex, string):
     return the_reg
 
 
+def backslash(regex, string):
+    the_reg = ''
+    for i in regex:
+        if i != '\\' and i != '$':
+            the_reg += i
+    if the_reg in string:
+        return True
+    else:
+        return False
+
+
 inp_reg, inp_string = input().split("|")
 if inp_reg == "":
     print(True)
+elif "\\" in inp_reg:
+    print(backslash(inp_reg, inp_string))
 elif '+' in inp_reg and '^' in inp_reg and '$' in inp_reg:
     the_regex = plus_sign(inp_reg, inp_string)
     chopped = the_regex[1:-1]
